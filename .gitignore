@@ -1,0 +1,23 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Environment and IDE settings
+.env
+.venv
+env/
+venv/
+ENV/
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS and system files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
