@@ -12,7 +12,7 @@
     <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
     <style>
         :root {
-            /* 100% Institutional Light Theme Palette */
+            /* Minimalist Institutional Light Theme */
             --bg-body: #f8fafc;
             --bg-surface: #ffffff;
             --bg-sidebar: #ffffff;
@@ -21,21 +21,20 @@
             
             --border-light: #e2e8f0;
             --border-medium: #cbd5e1;
-            --border-focus: #2563eb;
+            --border-focus: #1e3a8a;
             
             --text-primary: #0f172a;
             --text-secondary: #334155;
             --text-muted: #64748b;
             --text-subtle: #94a3b8;
             
-            /* Curated Banking Blue & Institutional Accents */
+            /* Curated Banking Palette */
             --primary: #1e3a8a;
             --primary-light: #2563eb;
             --primary-tint: #eff6ff;
             --primary-border: #bfdbfe;
             
             --success: #059669;
-            --success-light: #10b981;
             --success-tint: #ecfdf5;
             --success-border: #a7f3d0;
             
@@ -50,16 +49,18 @@
             --indigo: #4338ca;
             --indigo-tint: #eef2ff;
             --indigo-border: #c7d2fe;
+
+            --cyan: #0e7490;
+            --cyan-tint: #ecfeff;
+            --cyan-border: #a5f3fc;
             
             --shadow-xs: 0 1px 2px 0 rgba(15, 23, 42, 0.03);
             --shadow-sm: 0 1px 3px 0 rgba(15, 23, 42, 0.05), 0 1px 2px -1px rgba(15, 23, 42, 0.03);
             --shadow-md: 0 4px 12px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -2px rgba(15, 23, 42, 0.03);
-            --shadow-card-hover: 0 12px 28px -4px rgba(30, 58, 138, 0.08), 0 4px 10px -2px rgba(15, 23, 42, 0.04);
             
-            --radius-sm: 6px;
-            --radius-md: 10px;
-            --radius-lg: 14px;
-            --radius-xl: 18px;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
         }
 
         * {
@@ -69,61 +70,60 @@
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-body);
             color: var(--text-primary);
-            line-height: 1.55;
+            line-height: 1.5;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
 
-        /* Top Institutional Presentation Navigation Bar */
+        h1, h2, h3, h4, .brand-text-title, .project-headline, .hero-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        /* Top Institutional Navigation Bar */
         .top-navbar {
-            background-color: #ffffff;
+            background-color: var(--bg-surface);
             border-bottom: 1px solid var(--border-light);
-            padding: 0.75rem 2rem;
+            padding: 0.65rem 1.75rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: var(--shadow-sm);
         }
 
         .brand-group {
             display: flex;
             align-items: center;
-            gap: 0.95rem;
+            gap: 0.85rem;
         }
 
         .brand-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary);
             color: #ffffff;
             border-radius: var(--radius-md);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.15rem;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.22);
+            font-size: 1rem;
         }
 
         .brand-text-title {
-            font-size: 1.08rem;
+            font-size: 1.05rem;
             font-weight: 800;
             color: var(--text-primary);
             letter-spacing: -0.02em;
         }
 
         .brand-text-subtitle {
-            font-size: 0.76rem;
+            font-size: 0.74rem;
             color: var(--text-muted);
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            font-weight: 500;
         }
 
         .top-nav-actions {
@@ -132,98 +132,76 @@
             gap: 0.75rem;
         }
 
-        .market-tag-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.3rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.72rem;
-            font-weight: 700;
-            background-color: var(--bg-subtle);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-light);
-            font-family: 'JetBrains Mono', monospace;
-        }
-
         .status-pill {
             display: inline-flex;
             align-items: center;
-            gap: 0.45rem;
-            padding: 0.32rem 0.8rem;
-            border-radius: 9999px;
-            font-size: 0.74rem;
+            gap: 0.4rem;
+            padding: 0.28rem 0.65rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.72rem;
             font-weight: 700;
             background-color: var(--success-tint);
             color: var(--success);
             border: 1px solid var(--success-border);
-        }
-
-        .status-indicator-dot {
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            background-color: var(--success-light);
-            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
-            animation: pulseDot 2s infinite ease-in-out;
-        }
-
-        @keyframes pulseDot {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(0.85); }
+            font-family: 'JetBrains Mono', monospace;
         }
 
         .presentation-toggle-btn {
             display: inline-flex;
             align-items: center;
             gap: 0.45rem;
-            padding: 0.38rem 0.85rem;
-            background-color: var(--primary-tint);
-            color: var(--primary);
-            border: 1px solid var(--primary-border);
+            padding: 0.35rem 0.75rem;
+            background-color: var(--bg-subtle);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
             border-radius: var(--radius-md);
-            font-size: 0.76rem;
-            font-weight: 700;
+            font-size: 0.75rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.15s ease;
+            transition: background-color 0.15s ease, border-color 0.15s ease;
         }
 
         .presentation-toggle-btn:hover {
+            background-color: var(--primary-tint);
+            color: var(--primary);
+            border-color: var(--primary-border);
+        }
+
+        .presentation-toggle-btn.active {
             background-color: var(--primary);
             color: #ffffff;
             border-color: var(--primary);
         }
 
         .nav-keyboard-hint {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             color: var(--text-muted);
             background-color: var(--bg-subtle);
-            padding: 0.25rem 0.5rem;
+            padding: 0.2rem 0.45rem;
             border-radius: var(--radius-sm);
             border: 1px solid var(--border-light);
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Executive Master-Detail Workspace */
+        /* Workspace Layout */
         .workspace {
             display: flex;
-            min-height: calc(100vh - 62px);
+            min-height: calc(100vh - 53px);
             position: relative;
         }
 
-        /* Left Navigation Sidebar */
+        /* Sidebar Navigation */
         .sidebar {
             width: 310px;
             background-color: var(--bg-sidebar);
             border-right: 1px solid var(--border-light);
-            height: calc(100vh - 62px);
+            height: calc(100vh - 53px);
             position: sticky;
-            top: 62px;
+            top: 53px;
             display: flex;
             flex-direction: column;
             overflow-y: auto;
             flex-shrink: 0;
-            transition: transform 0.25s ease, width 0.25s ease;
         }
 
         body.presentation-mode .sidebar {
@@ -231,9 +209,9 @@
         }
 
         .sidebar-search-area {
-            padding: 0.85rem 1.15rem 0.65rem 1.15rem;
+            padding: 0.75rem 1rem;
             border-bottom: 1px solid var(--border-light);
-            background-color: #ffffff;
+            background-color: var(--bg-sidebar);
             position: sticky;
             top: 0;
             z-index: 10;
@@ -247,51 +225,49 @@
 
         .search-box i {
             position: absolute;
-            left: 0.85rem;
+            left: 0.75rem;
             color: var(--text-subtle);
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
 
         .search-field {
             width: 100%;
-            padding: 0.5rem 0.85rem 0.5rem 2.15rem;
+            padding: 0.42rem 0.75rem 0.42rem 1.95rem;
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            font-size: 0.8rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.78rem;
             font-family: inherit;
             background-color: var(--bg-subtle);
             color: var(--text-primary);
             outline: none;
-            transition: all 0.15s ease;
         }
 
         .search-field:focus {
             background-color: #ffffff;
             border-color: var(--primary-light);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
         }
 
         .sidebar-menu {
-            padding: 0.75rem 0.85rem 2.5rem 0.85rem;
+            padding: 0.65rem 0.75rem 2rem 0.75rem;
             display: flex;
             flex-direction: column;
-            gap: 0.25rem;
+            gap: 0.2rem;
         }
 
         .menu-overview-btn {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.65rem 0.85rem;
-            border-radius: var(--radius-md);
-            background-color: #ffffff;
+            padding: 0.55rem 0.75rem;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-surface);
             border: 1px solid var(--border-light);
-            font-weight: 800;
-            font-size: 0.82rem;
+            font-weight: 700;
+            font-size: 0.8rem;
             color: var(--text-primary);
             cursor: pointer;
-            margin-bottom: 0.65rem;
-            transition: all 0.15s ease;
+            margin-bottom: 0.5rem;
+            transition: background-color 0.12s ease;
         }
 
         .menu-overview-btn:hover {
@@ -301,45 +277,43 @@
         }
 
         .menu-overview-btn.active {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            background-color: var(--primary);
             color: #ffffff;
-            border-color: transparent;
-            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.22);
+            border-color: var(--primary);
         }
 
-        .menu-overview-btn.active .nav-metric-pill {
+        .menu-overview-btn.active .nav-count-badge {
             background-color: rgba(255, 255, 255, 0.2);
             color: #ffffff;
         }
 
         .group-header {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.05em;
             color: var(--text-muted);
-            padding: 0.65rem 0.55rem 0.25rem 0.55rem;
+            padding: 0.65rem 0.45rem 0.2rem 0.45rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
             border-top: 1px solid var(--border-light);
-            margin-top: 0.45rem;
+            margin-top: 0.35rem;
         }
 
         .project-nav-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0.5rem 0.65rem;
-            border-radius: var(--radius-md);
+            padding: 0.42rem 0.55rem;
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.12s ease;
+            transition: background-color 0.12s ease;
             border: 1px solid transparent;
         }
 
         .project-nav-item:hover {
             background-color: var(--bg-subtle);
-            border-color: var(--border-light);
         }
 
         .project-nav-item.active {
@@ -350,17 +324,17 @@
         .nav-item-content {
             display: flex;
             align-items: center;
-            gap: 0.55rem;
+            gap: 0.45rem;
             overflow: hidden;
         }
 
         .nav-num-badge {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 800;
+            font-size: 0.65rem;
+            font-weight: 700;
             color: var(--text-muted);
             background-color: var(--bg-subtle);
-            padding: 0.12rem 0.4rem;
+            padding: 0.1rem 0.35rem;
             border-radius: var(--radius-sm);
             flex-shrink: 0;
         }
@@ -371,8 +345,8 @@
         }
 
         .nav-proj-title {
-            font-size: 0.78rem;
-            font-weight: 600;
+            font-size: 0.76rem;
+            font-weight: 500;
             color: var(--text-secondary);
             white-space: nowrap;
             overflow: hidden;
@@ -381,74 +355,71 @@
 
         .project-nav-item.active .nav-proj-title {
             color: var(--primary);
-            font-weight: 800;
+            font-weight: 700;
         }
 
         .nav-metric-pill {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.66rem;
-            font-weight: 700;
-            padding: 0.12rem 0.4rem;
+            font-size: 0.64rem;
+            font-weight: 600;
+            padding: 0.1rem 0.35rem;
             border-radius: var(--radius-sm);
             background-color: var(--bg-subtle);
             color: var(--text-muted);
             flex-shrink: 0;
         }
 
-        .project-nav-item.active .nav-metric-pill {
-            background-color: #ffffff;
-            color: var(--primary);
-            border: 1px solid var(--primary-border);
+        .nav-count-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.1rem 0.4rem;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-subtle);
+            color: var(--text-muted);
         }
 
-        /* Main Viewport & Presentation Workspace */
+        /* Viewport */
         .viewport {
             flex: 1;
-            padding: 1.75rem 2.25rem 3.5rem 2.25rem;
+            padding: 1.5rem 2rem 3rem 2rem;
             overflow-y: auto;
-            max-width: 1550px;
+            max-width: 1500px;
             margin: 0 auto;
             width: 100%;
         }
 
         body.presentation-mode .viewport {
-            padding: 1.75rem 3.5rem;
-            max-width: 1680px;
+            padding: 1.5rem 3rem;
+            max-width: 1600px;
         }
 
         .view-section {
             display: none;
-            animation: fadeIn 0.2s ease forwards;
         }
 
         .view-section.active {
             display: block;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Presentation Slide Navigation Bar */
+        /* Slide Stepper Navigation Toolbar */
         .presentation-control-bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background-color: #ffffff;
+            background-color: var(--bg-surface);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 0.65rem 1.15rem;
-            margin-bottom: 1.35rem;
-            box-shadow: var(--shadow-xs);
+            border-radius: var(--radius-md);
+            padding: 0.55rem 1rem;
+            margin-bottom: 1.25rem;
         }
 
         .slide-breadcrumb {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            font-size: 0.78rem;
-            font-weight: 700;
+            gap: 0.45rem;
+            font-size: 0.76rem;
+            font-weight: 600;
             color: var(--text-muted);
         }
 
@@ -459,27 +430,26 @@
         .slide-nav-buttons {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.45rem;
         }
 
         .slide-btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            padding: 0.35rem 0.75rem;
-            border-radius: var(--radius-md);
+            gap: 0.35rem;
+            padding: 0.3rem 0.65rem;
+            border-radius: var(--radius-sm);
             border: 1px solid var(--border-light);
-            background-color: #ffffff;
-            font-size: 0.74rem;
-            font-weight: 700;
+            background-color: var(--bg-surface);
+            font-size: 0.72rem;
+            font-weight: 600;
             color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.12s ease;
+            transition: background-color 0.12s ease;
         }
 
         .slide-btn:hover {
             background-color: var(--bg-subtle);
-            border-color: var(--border-medium);
             color: var(--text-primary);
         }
 
@@ -490,37 +460,24 @@
         }
 
         .slide-btn-primary:hover {
-            background-color: #1d4ed8;
+            background-color: var(--primary-light);
             color: #ffffff;
         }
 
-        /* Project Presentation Header Banner */
+        /* Project Presentation Header */
         .project-header-box {
-            background-color: #ffffff;
+            background-color: var(--bg-surface);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1.65rem 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-xs);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .project-header-box::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 50%, #059669 100%);
+            border-radius: var(--radius-md);
+            padding: 1.4rem 1.75rem;
+            margin-bottom: 1.25rem;
         }
 
         .badge-row {
             display: flex;
             align-items: center;
-            gap: 0.55rem;
-            margin-bottom: 0.75rem;
+            gap: 0.5rem;
+            margin-bottom: 0.6rem;
             flex-wrap: wrap;
         }
 
@@ -529,277 +486,254 @@
             background-color: var(--primary-tint);
             color: var(--primary);
             border: 1px solid var(--primary-border);
-            font-weight: 800;
-            font-size: 0.72rem;
-            padding: 0.2rem 0.55rem;
+            font-weight: 700;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.45rem;
             border-radius: var(--radius-sm);
-            letter-spacing: 0.04em;
         }
 
         .project-cat-badge {
             background-color: var(--bg-subtle);
             color: var(--text-muted);
             border: 1px solid var(--border-light);
-            font-weight: 700;
-            font-size: 0.72rem;
-            padding: 0.2rem 0.55rem;
+            font-weight: 600;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.45rem;
             border-radius: var(--radius-sm);
             text-transform: uppercase;
         }
 
         .project-headline {
-            font-size: 1.55rem;
+            font-size: 1.45rem;
             font-weight: 800;
             color: var(--text-primary);
-            line-height: 1.25;
-            margin-bottom: 1rem;
-            letter-spacing: -0.025em;
+            line-height: 1.3;
+            margin-bottom: 0.85rem;
+            letter-spacing: -0.02em;
         }
 
         .methodology-card {
             background-color: var(--bg-subtle);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 1.15rem 1.35rem;
+            border-radius: var(--radius-sm);
+            padding: 0.95rem 1.15rem;
         }
 
         .methodology-title {
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             font-weight: 800;
             color: var(--text-primary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.45rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.35rem;
             display: flex;
             align-items: center;
-            gap: 0.45rem;
+            gap: 0.4rem;
         }
 
         .methodology-desc {
-            font-size: 0.88rem;
+            font-size: 0.84rem;
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.55;
         }
 
-        /* Executive KPI Highlights Panel */
+        /* Executive KPI Panel */
         .executive-kpi-panel {
-            background-color: #ffffff;
+            background-color: var(--bg-surface);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1.45rem 1.75rem;
-            margin-bottom: 1.6rem;
-            box-shadow: var(--shadow-xs);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.25rem;
         }
 
         .kpi-panel-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.15rem;
-            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.6rem;
             border-bottom: 1px solid var(--border-light);
-            flex-wrap: wrap;
-            gap: 0.5rem;
         }
 
         .kpi-panel-title {
-            font-size: 0.82rem;
+            font-size: 0.74rem;
             font-weight: 800;
-            color: var(--text-primary);
+            color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.04em;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .kpi-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 1.1rem;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.85rem;
         }
 
         .kpi-stat-box {
-            background: #ffffff;
+            background-color: var(--bg-subtle);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 1.15rem 1.3rem;
-            box-shadow: var(--shadow-xs);
-            transition: all 0.2s ease;
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 100px;
-        }
-
-        .kpi-stat-box:hover {
-            border-color: var(--primary-border);
-            box-shadow: var(--shadow-card-hover);
-            transform: translateY(-2px);
         }
 
         .kpi-stat-top {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 0.55rem;
-            gap: 0.5rem;
+            align-items: center;
+            margin-bottom: 0.35rem;
         }
 
         .kpi-stat-title {
-            font-size: 0.72rem;
+            font-size: 0.68rem;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.04em;
-            line-height: 1.35;
-            word-break: break-word;
+            letter-spacing: 0.03em;
         }
 
         .kpi-indicator-icon {
-            color: var(--primary-light);
-            font-size: 0.82rem;
-            flex-shrink: 0;
+            font-size: 0.7rem;
+            color: var(--success);
         }
 
         .kpi-stat-val {
-            font-size: 1.28rem;
+            font-size: 1.15rem;
             font-weight: 800;
             color: var(--text-primary);
             font-family: 'JetBrains Mono', monospace;
-            letter-spacing: -0.02em;
-            word-break: break-word;
-            line-height: 1.25;
         }
 
-        /* Interactive Diagnostic Visual Suite */
+        /* Diagnostic Visual Analytics Suite */
         .chart-suite-wrapper {
-            background-color: #ffffff;
+            background-color: var(--bg-surface);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1.6rem;
-            margin-bottom: 1.6rem;
-            box-shadow: var(--shadow-xs);
+            border-radius: var(--radius-md);
+            padding: 1.35rem 1.6rem;
+            margin-bottom: 1.25rem;
         }
 
         .suite-header-bar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding-bottom: 1.1rem;
-            margin-bottom: 1.1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
             border-bottom: 1px solid var(--border-light);
             flex-wrap: wrap;
-            gap: 0.85rem;
+            gap: 0.6rem;
         }
 
         .suite-title-area {
             display: flex;
             flex-direction: column;
-            gap: 0.2rem;
+            gap: 0.15rem;
         }
 
         .suite-main-title {
-            font-size: 1.02rem;
+            font-size: 0.95rem;
             font-weight: 800;
             color: var(--text-primary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            letter-spacing: -0.02em;
-        }
-
-        .suite-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .chart-tab-list {
             display: flex;
             align-items: center;
             gap: 0.45rem;
-            overflow-x: auto;
-            padding-bottom: 0.4rem;
-            margin-bottom: 1.1rem;
         }
 
-        .tab-button {
-            background-color: var(--bg-subtle);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 0.5rem 0.85rem;
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: all 0.12s ease;
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .tab-button:hover {
-            background-color: #ffffff;
-            border-color: var(--border-medium);
-            color: var(--text-primary);
-        }
-
-        .tab-button.active {
-            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-            color: #ffffff;
-            border-color: transparent;
-            box-shadow: 0 3px 10px rgba(37, 99, 235, 0.22);
-        }
-
-        .tab-fig-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 800;
-            background-color: rgba(0, 0, 0, 0.05);
-            padding: 0.12rem 0.4rem;
-            border-radius: var(--radius-sm);
-        }
-
-        .tab-button.active .tab-fig-badge {
-            background-color: rgba(255, 255, 255, 0.22);
-            color: #ffffff;
-        }
-
-        .tab-fig-name {
-            max-width: 250px;
-            overflow: hidden;
-            text-overflow: ellipsis;
+        .suite-subtitle {
+            font-size: 0.74rem;
+            color: var(--text-muted);
         }
 
         .mode-switch-group {
             display: flex;
             background-color: var(--bg-subtle);
-            padding: 0.2rem;
-            border-radius: var(--radius-md);
             border: 1px solid var(--border-light);
-            gap: 0.2rem;
+            border-radius: var(--radius-sm);
+            padding: 0.15rem;
+            gap: 0.15rem;
         }
 
         .mode-switch-btn {
-            padding: 0.35rem 0.75rem;
-            font-size: 0.74rem;
-            font-weight: 700;
             border: none;
             background: transparent;
+            padding: 0.28rem 0.65rem;
+            font-size: 0.72rem;
+            font-weight: 600;
             color: var(--text-muted);
             border-radius: var(--radius-sm);
             cursor: pointer;
-            transition: all 0.12s ease;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.35rem;
         }
 
         .mode-switch-btn.active {
             background-color: #ffffff;
-            color: var(--text-primary);
+            color: var(--primary);
             box-shadow: var(--shadow-xs);
+        }
+
+        .chart-tab-list {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+            padding-bottom: 0.2rem;
+        }
+
+        .tab-button {
+            border: 1px solid var(--border-light);
+            background-color: var(--bg-subtle);
+            border-radius: var(--radius-sm);
+            padding: 0.42rem 0.75rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.45rem;
+            transition: background-color 0.12s ease;
+            white-space: nowrap;
+        }
+
+        .tab-button:hover {
+            background-color: var(--bg-hover);
+        }
+
+        .tab-button.active {
+            background-color: var(--primary-tint);
+            border-color: var(--primary-border);
+        }
+
+        .tab-fig-badge {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.64rem;
+            font-weight: 700;
+            padding: 0.1rem 0.35rem;
+            border-radius: var(--radius-sm);
+            background-color: #ffffff;
+            color: var(--text-muted);
+            border: 1px solid var(--border-light);
+        }
+
+        .tab-button.active .tab-fig-badge {
+            background-color: var(--primary);
+            color: #ffffff;
+            border-color: var(--primary);
+        }
+
+        .tab-fig-name {
+            font-size: 0.74rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .tab-button.active .tab-fig-name {
+            color: var(--primary);
+            font-weight: 700;
         }
 
         .chart-display-pane {
@@ -810,135 +744,150 @@
             display: block;
         }
 
-        .plot-canvas-box {
-            background-color: #ffffff;
+        .focused-chart-container.stacked-mode .chart-display-pane {
+            display: block !important;
+            margin-bottom: 1.75rem;
             border: 1px solid var(--border-light);
             border-radius: var(--radius-md);
             padding: 1.15rem;
-            margin-bottom: 1.35rem;
-            box-shadow: var(--shadow-xs);
+            background-color: #ffffff;
         }
 
-        /* 3-Part Analytical Interpretation Card */
+        .focused-chart-container.stacked-mode .tab-fig-banner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.85rem;
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            margin-bottom: 0.85rem;
+            font-weight: 700;
+            font-size: 0.82rem;
+            color: var(--primary);
+        }
+
+        .tab-fig-banner {
+            display: none;
+        }
+
+        .plot-canvas-box {
+            background-color: #ffffff;
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 1rem;
+            margin-bottom: 1.15rem;
+            min-height: 420px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .plot-canvas-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.65rem;
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            font-weight: 500;
+            min-height: 380px;
+        }
+
+        .plotly-graph-div {
+            width: 100% !important;
+            min-height: 400px;
+        }
+
+        /* Analytical Interpretation Card */
         .analytical-interpretation-card {
             background-color: #ffffff;
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 1.35rem 1.55rem;
-            box-shadow: var(--shadow-xs);
+            border-radius: var(--radius-sm);
+            padding: 1.15rem 1.35rem;
         }
 
         .interpretation-header {
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             font-weight: 800;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-            padding-bottom: 0.55rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.85rem;
+            padding-bottom: 0.45rem;
             border-bottom: 1px solid var(--border-light);
-            display: flex;
-            align-items: center;
-            gap: 0.45rem;
-        }
-
-        .interpretation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 1.15rem;
-        }
-
-        .interpretation-segment {
-            border-radius: var(--radius-md);
-            padding: 1.05rem 1.15rem;
-            border: 1px solid var(--border-light);
-            transition: all 0.15s ease;
-        }
-
-        .seg-shows {
-            background-color: #f8fafc;
-            border-left: 3px solid #3b82f6;
-        }
-
-        .seg-finding {
-            background-color: #fffbeb;
-            border-left: 3px solid #f59e0b;
-            border-color: #fef3c7 #fef3c7 #fef3c7 #f59e0b;
-        }
-
-        .seg-action {
-            background-color: #f0fdf4;
-            border-left: 3px solid #10b981;
-            border-color: #dcfce7 #dcfce7 #dcfce7 #10b981;
-        }
-
-        .segment-tag {
-            font-size: 0.72rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 0.45rem;
             display: flex;
             align-items: center;
             gap: 0.4rem;
         }
 
-        .tag-shows { color: #1e40af; }
-        .tag-finding { color: #b45309; }
-        .tag-action { color: #047857; }
+        .interpretation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0.95rem;
+        }
+
+        .interpretation-segment {
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+            border: 1px solid var(--border-light);
+        }
+
+        .seg-shows {
+            background-color: #f8fafc;
+            border-left: 3px solid var(--primary-light);
+        }
+
+        .seg-finding {
+            background-color: #fffbeb;
+            border-left: 3px solid var(--warning);
+            border-color: #fef3c7 #fef3c7 #fef3c7 var(--warning);
+        }
+
+        .seg-action {
+            background-color: #f0fdf4;
+            border-left: 3px solid var(--success);
+            border-color: #dcfce7 #dcfce7 #dcfce7 var(--success);
+        }
+
+        .segment-tag {
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.35rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .tag-shows { color: var(--primary-light); }
+        .tag-finding { color: var(--warning); }
+        .tag-action { color: var(--success); }
 
         .segment-text {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
-            line-height: 1.55;
+            line-height: 1.5;
         }
 
-        .all-charts-stack {
-            display: none;
-            flex-direction: column;
-            gap: 1.75rem;
-        }
-
-        .all-charts-stack.active {
-            display: flex;
-        }
-
-        .stacked-chart-box {
+        /* Decision Tables */
+        .section-card {
+            background-color: var(--bg-surface);
             border: 1px solid var(--border-light);
             border-radius: var(--radius-md);
-            overflow: hidden;
-            background-color: #ffffff;
-        }
-
-        .stacked-chart-head {
-            background-color: var(--bg-subtle);
-            padding: 0.75rem 1.15rem;
-            font-weight: 800;
-            font-size: 0.86rem;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border-light);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        /* Decision Tables & Matrices */
-        .section-card {
-            background-color: #ffffff;
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1.55rem 1.85rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-xs);
+            padding: 1.35rem 1.6rem;
+            margin-bottom: 1.25rem;
         }
 
         .section-header-title {
-            font-size: 0.9rem;
+            font-size: 0.84rem;
             font-weight: 800;
             color: var(--text-primary);
             text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1.05rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.85rem;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -947,14 +896,14 @@
         .section-header-left {
             display: flex;
             align-items: center;
-            gap: 0.55rem;
+            gap: 0.45rem;
         }
 
         .table-badge {
-            font-size: 0.7rem;
+            font-size: 0.68rem;
             font-weight: 700;
-            padding: 0.2rem 0.55rem;
-            border-radius: 9999px;
+            padding: 0.15rem 0.45rem;
+            border-radius: var(--radius-sm);
             background-color: var(--primary-tint);
             color: var(--primary);
             border: 1px solid var(--primary-border);
@@ -975,30 +924,30 @@
         .table-container {
             overflow-x: auto;
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
+            border-radius: var(--radius-sm);
         }
 
         .modern-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             text-align: left;
         }
 
         .modern-table th {
             background-color: var(--bg-subtle);
             color: var(--text-primary);
-            font-weight: 800;
-            padding: 0.85rem 1.15rem;
+            font-weight: 700;
+            padding: 0.75rem 1rem;
             border-bottom: 1px solid var(--border-light);
-            font-size: 0.74rem;
+            font-size: 0.72rem;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.03em;
             white-space: nowrap;
         }
 
         .modern-table td {
-            padding: 0.85rem 1.15rem;
+            padding: 0.75rem 1rem;
             border-bottom: 1px solid var(--border-light);
             color: var(--text-secondary);
         }
@@ -1011,50 +960,40 @@
             background-color: var(--bg-hover);
         }
 
-        /* Executive Profit Playbook Presentation Cards */
+        /* Profit Playbook Cards */
         .profit-playbook-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.35rem;
-            margin-top: 0.65rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.15rem;
+            margin-top: 0.5rem;
         }
 
         .playbook-card {
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 1.35rem 1.5rem;
+            border-radius: var(--radius-sm);
+            padding: 1.15rem 1.35rem;
             background-color: #ffffff;
-            box-shadow: var(--shadow-xs);
-            transition: all 0.2s ease;
-            position: relative;
-            overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-        }
-
-        .playbook-card:hover {
-            border-color: var(--primary-light);
-            box-shadow: var(--shadow-card-hover);
-            transform: translateY(-2px);
         }
 
         .playbook-card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.65rem;
         }
 
         .playbook-phase-tag {
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
-            font-size: 0.72rem;
-            font-weight: 800;
+            gap: 0.35rem;
+            font-size: 0.68rem;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 0.04em;
-            padding: 0.25rem 0.65rem;
+            letter-spacing: 0.03em;
+            padding: 0.18rem 0.5rem;
             border-radius: var(--radius-sm);
         }
 
@@ -1063,119 +1002,180 @@
         .phase-12m { background-color: var(--indigo-tint); color: var(--indigo); border: 1px solid var(--indigo-border); }
 
         .playbook-title {
-            font-size: 0.98rem;
-            font-weight: 800;
+            font-size: 0.92rem;
+            font-weight: 700;
             color: var(--text-primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
         }
 
         .playbook-text {
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
-            line-height: 1.55;
+            line-height: 1.5;
         }
 
-        /* Production Deployment Roadmap */
+        /* Governance Next Steps */
         .governance-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-            gap: 0.95rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.75rem;
         }
 
         .governance-card {
             background-color: var(--bg-subtle);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 1.05rem 1.25rem;
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
             display: flex;
-            gap: 0.85rem;
+            gap: 0.65rem;
             align-items: flex-start;
-            transition: all 0.12s ease;
-        }
-
-        .governance-card:hover {
-            background-color: #ffffff;
-            border-color: var(--border-medium);
-            box-shadow: var(--shadow-xs);
         }
 
         .governance-index {
             background-color: var(--primary);
             color: #ffffff;
-            font-size: 0.74rem;
-            font-weight: 800;
-            width: 24px;
-            height: 24px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            margin-top: 0.1rem;
+            margin-top: 0.05rem;
         }
 
         .governance-text {
-            font-size: 0.84rem;
+            font-size: 0.82rem;
             color: var(--text-secondary);
-            line-height: 1.5;
+            line-height: 1.45;
         }
 
-        /* Executive Portfolio Overview Matrix */
+        /* Overview Matrix Layout */
         .overview-wrapper {
-            background-color: #ffffff;
+            background-color: var(--bg-surface);
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 2rem 2.25rem;
-            box-shadow: var(--shadow-xs);
-            margin-bottom: 1.75rem;
+            border-radius: var(--radius-md);
+            padding: 1.65rem 1.85rem;
+            margin-bottom: 1.5rem;
         }
 
-        .overview-lead {
-            margin-bottom: 1.75rem;
-            padding-bottom: 1.35rem;
+        .overview-hero-card {
             border-bottom: 1px solid var(--border-light);
+            padding-bottom: 1.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .overview-lead h2 {
-            font-size: 1.75rem;
+        .hero-eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 0.45rem;
+        }
+
+        .hero-badge {
+            background-color: var(--primary-tint);
+            color: var(--primary);
+            border: 1px solid var(--primary-border);
+            padding: 0.15rem 0.45rem;
+            border-radius: var(--radius-sm);
+        }
+
+        .hero-title {
+            font-size: 1.65rem;
             font-weight: 800;
             color: var(--text-primary);
             letter-spacing: -0.025em;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.45rem;
         }
 
-        .overview-lead p {
-            font-size: 0.92rem;
-            color: var(--text-muted);
+        .hero-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
             max-width: 1100px;
             line-height: 1.55;
         }
 
-        /* Overview Filter Strip */
+        .hero-stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 0.95rem;
+            margin-top: 1.25rem;
+        }
+
+        .hero-stat-card {
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-sm);
+            padding: 0.95rem 1.15rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-stat-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .hero-stat-lbl {
+            font-size: 0.68rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .hero-stat-val {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 0.2rem;
+        }
+
+        .hero-stat-sub {
+            font-size: 0.72rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        /* Overview Pillar Filter Bar */
         .pillar-filter-bar {
             display: flex;
             align-items: center;
             gap: 0.45rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1.35rem;
             overflow-x: auto;
             padding-bottom: 0.25rem;
         }
 
         .filter-chip {
-            padding: 0.4rem 0.85rem;
-            border-radius: 9999px;
+            padding: 0.38rem 0.8rem;
+            border-radius: var(--radius-sm);
             border: 1px solid var(--border-light);
-            background-color: var(--bg-subtle);
-            font-size: 0.76rem;
-            font-weight: 700;
+            background-color: #ffffff;
+            font-size: 0.74rem;
+            font-weight: 600;
             color: var(--text-secondary);
             cursor: pointer;
-            transition: all 0.12s ease;
+            transition: background-color 0.12s ease;
             white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
         }
 
         .filter-chip:hover {
-            background-color: var(--bg-hover);
+            background-color: var(--bg-subtle);
             color: var(--text-primary);
         }
 
@@ -1183,92 +1183,90 @@
             background-color: var(--primary);
             color: #ffffff;
             border-color: var(--primary);
-            box-shadow: 0 2px 6px rgba(30, 58, 138, 0.2);
         }
 
+        .chip-count {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            padding: 0.08rem 0.35rem;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-subtle);
+            color: var(--text-muted);
+        }
+
+        .filter-chip.active .chip-count {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
+        }
+
+        /* 50-Model Grid */
         .matrix-grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-            gap: 1.35rem;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.15rem;
         }
 
         .matrix-project-tile {
             border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 1.4rem 1.5rem;
+            border-radius: var(--radius-sm);
+            padding: 1.25rem 1.35rem;
             background-color: #ffffff;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: var(--shadow-xs);
-            position: relative;
-            overflow: hidden;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            min-height: 275px;
+            min-height: 260px;
         }
 
         .matrix-project-tile:hover {
             border-color: var(--primary-light);
-            box-shadow: var(--shadow-card-hover);
-            transform: translateY(-3px);
-        }
-
-        .matrix-project-tile::before {
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background-color: var(--primary-light);
-            opacity: 0;
-            transition: opacity 0.15s ease;
-        }
-
-        .matrix-project-tile:hover::before {
-            opacity: 1;
+            box-shadow: var(--shadow-sm);
         }
 
         .matrix-tile-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 0.65rem;
+            margin-bottom: 0.55rem;
         }
 
         .matrix-tile-id {
-            font-size: 0.7rem;
-            font-weight: 800;
+            font-size: 0.68rem;
+            font-weight: 700;
             color: var(--primary);
             font-family: 'JetBrains Mono', monospace;
             background-color: var(--primary-tint);
-            padding: 0.18rem 0.5rem;
+            padding: 0.15rem 0.45rem;
             border-radius: var(--radius-sm);
+            border: 1px solid var(--primary-border);
         }
 
         .matrix-tile-cat {
-            font-size: 0.68rem;
+            font-size: 0.66rem;
             font-weight: 700;
             color: var(--text-muted);
             text-transform: uppercase;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.03em;
+            padding: 0.12rem 0.4rem;
+            border-radius: var(--radius-sm);
+            background-color: var(--bg-subtle);
         }
 
         .matrix-tile-title {
-            font-size: 1.02rem;
-            font-weight: 800;
+            font-size: 0.98rem;
+            font-weight: 700;
             color: var(--text-primary);
             line-height: 1.35;
-            margin-bottom: 0.55rem;
-            min-height: 2.7rem;
+            margin-bottom: 0.45rem;
+            min-height: 2.6rem;
         }
 
         .matrix-tile-desc {
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 1.15rem;
+            line-height: 1.45;
+            margin-bottom: 0.95rem;
             display: -webkit-box;
             -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
@@ -1278,9 +1276,9 @@
         .matrix-tile-kpis {
             display: flex;
             flex-direction: column;
-            gap: 0.45rem;
+            gap: 0.35rem;
             border-top: 1px solid var(--border-light);
-            padding-top: 0.85rem;
+            padding-top: 0.75rem;
             margin-top: auto;
         }
 
@@ -1288,19 +1286,18 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #f8fafc;
-            border: 1px solid #f1f5f9;
-            padding: 0.4rem 0.75rem;
+            background-color: var(--bg-subtle);
+            border: 1px solid var(--border-light);
+            padding: 0.35rem 0.65rem;
             border-radius: var(--radius-sm);
-            gap: 0.75rem;
+            gap: 0.65rem;
         }
 
         .mini-kpi-lbl {
-            font-size: 0.68rem;
+            font-size: 0.66rem;
             color: var(--text-muted);
             text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 0.03em;
+            font-weight: 600;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -1308,9 +1305,9 @@
         }
 
         .mini-kpi-val {
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             color: var(--text-primary);
-            font-weight: 800;
+            font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
             text-align: right;
             white-space: nowrap;
@@ -1326,37 +1323,32 @@
         @media (max-width: 768px) {
             .workspace { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: static; }
-            .top-nav-actions { display: none; }
             .viewport { padding: 1rem; }
+            .hero-stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .matrix-grid-container { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Top Institutional Presentation Navigation Bar -->
+    <!-- Top Navigation Bar -->
     <header class="top-navbar">
         <div class="brand-group">
             <div class="brand-icon">
-                <i class="fa-solid fa-chart-line"></i>
+                <i class="fa-solid fa-layer-group"></i>
             </div>
             <div>
-                <div class="brand-text-title">NEXUS <span style="font-weight: 600; color: var(--primary-light);">Risk Intelligence</span></div>
-                <div class="brand-text-subtitle">
-                    <span>50 Institutional Models</span>
-                    <span>&bull;</span>
-                    <span>European &amp; Global Banking Benchmarks</span>
-                </div>
+                <div class="brand-text-title">NEXUS QUANT</div>
+                <div class="brand-text-subtitle">Quantitative Banking Risk Analytics Suite</div>
             </div>
         </div>
+
         <div class="top-nav-actions">
-            <span class="market-tag-pill">
-                <i class="fa-solid fa-shield-halved"></i> Basel IV &bull; IFRS 9 &bull; ECB SSM
-            </span>
             <span class="status-pill">
-                <span class="status-indicator-dot"></span> 50 Models Validated
+                <i class="fa-solid fa-circle-check"></i> 50 Models Validated
             </span>
             <button class="presentation-toggle-btn" id="presentationModeBtn" onclick="togglePresentationMode()">
-                <i class="fa-solid fa-expand"></i> Presentation Mode
+                <i class="fa-solid fa-display"></i> Presentation Mode
             </button>
             <span class="nav-keyboard-hint">[ &larr; ] [ &rarr; ]</span>
         </div>
@@ -1370,23 +1362,23 @@
             <div class="sidebar-search-area">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="projectSearchInput" class="search-field" placeholder="Search 50 banking models..." onkeyup="handleSidebarSearch()">
+                    <input type="text" id="projectSearchInput" class="search-field" placeholder="Filter models..." onkeyup="handleSidebarSearch()">
                 </div>
             </div>
 
             <div class="sidebar-menu">
                 <!-- Portfolio Overview Summary -->
                 <div class="menu-overview-btn active" id="nav-btn-overview" onclick="selectProject('overview')">
-                    <span style="display: flex; align-items: center; gap: 0.55rem;">
-                        <i class="fa-solid fa-table-cells-large"></i> 50-Model Overview Matrix
+                    <span style="display: flex; align-items: center; gap: 0.5rem;">
+                        <i class="fa-solid fa-table-cells-large"></i> 50-Model Overview
                     </span>
-                    <span class="nav-metric-pill">50 PROJS</span>
+                    <span class="nav-count-badge">50</span>
                 </div>
 
                 <!-- Pillar 1: Credit Risk & Lending -->
                 <div class="group-header">
-                    <span><i class="fa-solid fa-shield-halved"></i> Credit Risk &amp; Lending</span>
-                    <span>19 Models</span>
+                    <span>Credit Risk &amp; Lending</span>
+                    <span>20 Models</span>
                 </div>
                 {% for p in projects %}
                 {% if p.project_id in ['01_Retail_Credit_Risk_Scorecard_GlobalBank', '03_IFRS9_Expected_Credit_Loss_LGD_EAD', '07_Dynamic_Loan_Pricing_Risk_Adjusted_Return', '11_European_NPL_Resolution_BNP_Paribas', '12_SME_Credit_Underwriting_Banco_Santander', '16_Open_Banking_PSD2_Lending_Barclays', '21_Italian_Superbonus_Tax_Credit_Banco_BPM', '22_Parmigiano_Cheese_Collateral_Lending_Credem', '25_CEE_Syndicated_Lending_UniCredit_Group', '26_Consumer_Credit_Point_of_Sale_Mediobanca', '27_Industrial_District_Supply_Chain_BPER', '31_Mittelstand_Export_Trade_Finance_Commerzbank', '33_Schuldschein_Corporate_Debt_Placement_LBBW', '35_Commercial_Aviation_Project_Finance_BayernLB', '37_Digital_Mortgage_Underwriting_ING_DiBa', '41_Swiss_Lombard_Lending_Margin_Julius_Baer', '42_Dutch_NHG_Social_Mortgage_Guarantee_Rabobank', '43_French_Infrastructure_PPP_Debt_SocGen', '45_Spanish_Olive_Oil_Warrants_CaixaBank', '50_Irish_Section110_SPV_Warehousing_Bank_of_Ireland'] %}
@@ -1424,7 +1416,7 @@
 
                 <!-- Pillar 2: Financial Crime & Real-Time Fraud -->
                 <div class="group-header">
-                    <span><i class="fa-solid fa-user-secret"></i> Financial Crime &amp; Fraud</span>
+                    <span>Financial Crime &amp; Fraud</span>
                     <span>4 Models</span>
                 </div>
                 {% for p in projects %}
@@ -1447,7 +1439,7 @@
 
                 <!-- Pillar 3: Treasury, ALM & Fixed Income -->
                 <div class="group-header">
-                    <span><i class="fa-solid fa-vault"></i> Treasury &amp; ALM</span>
+                    <span>Treasury &amp; ALM</span>
                     <span>10 Models</span>
                 </div>
                 {% for p in projects %}
@@ -1476,7 +1468,7 @@
 
                 <!-- Pillar 4: Customer, Wealth & Fintech -->
                 <div class="group-header">
-                    <span><i class="fa-solid fa-users"></i> Customer, Wealth &amp; Fintech</span>
+                    <span>Customer &amp; Wealth</span>
                     <span>7 Models</span>
                 </div>
                 {% for p in projects %}
@@ -1502,8 +1494,8 @@
 
                 <!-- Pillar 5: Regulatory Solvency, ESG & Basel IV -->
                 <div class="group-header">
-                    <span><i class="fa-solid fa-landmark"></i> Solvency, ESG &amp; Basel IV</span>
-                    <span>10 Models</span>
+                    <span>Solvency &amp; ESG</span>
+                    <span>9 Models</span>
                 </div>
                 {% for p in projects %}
                 {% if p.project_id in ['10_Macroeconomic_Stress_Testing_CCAR_EBA', '13_ESG_Climate_Risk_Green_Taxonomy_ING', '20_Basel_IV_Output_Floor_RWA_HSBC', '23_Italian_NPE_GACS_Securitization_Banca_MPS', '29_Alpine_Hydro_Renewable_Project_Debt_Sondrio', '32_KfW_Green_Energy_Subsidy_Lending_KfW', '34_Cooperative_Bank_Network_Guarantee_DZ_BANK', '46_CEE_MPE_MREL_Resolution_BailIn_Erste_Group', '49_North_Sea_Offshore_Wind_Finance_DNB_Bank'] %}
@@ -1536,19 +1528,73 @@
             <!-- OVERVIEW SECTION: Portfolio Executive Summary Matrix -->
             <section class="view-section active" id="pane-overview">
                 <div class="overview-wrapper">
-                    <div class="overview-lead">
-                        <h2>Institutional Banking Risk &amp; Capital Intelligence Matrix</h2>
-                        <p>A production-calibrated suite of 50 quantitative risk and capital models spanning retail credit scoring, wholesale syndicated lending, sovereign ALM, real-time AML graph networks, and specialized European banking regimes across 12 jurisdictions.</p>
+                    
+                    <!-- Overview Hero Banner -->
+                    <div class="overview-hero-card">
+                        <div class="hero-eyebrow">
+                            <span class="hero-badge">PRODUCTION SUITE</span>
+                            <span>QUANTITATIVE RISK &amp; CAPITAL INTELLIGENCE MATRIX</span>
+                        </div>
+                        <h1 class="hero-title">Institutional Banking Risk Models</h1>
+                        <p class="hero-desc">Calibrated quantitative modeling spanning retail credit scoring, syndicated lending, sovereign ALM, real-time transaction graph AML, and European supervisory regimes across 12 jurisdictions.</p>
+                        
+                        <!-- 4 Core Metric Highlights -->
+                        <div class="hero-stat-grid">
+                            <div class="hero-stat-card">
+                                <div class="hero-stat-top">
+                                    <span class="hero-stat-lbl">Model Inventory</span>
+                                    <i class="fa-solid fa-layer-group" style="color: var(--primary);"></i>
+                                </div>
+                                <div class="hero-stat-val">50</div>
+                                <div class="hero-stat-sub">100% IRB Validated</div>
+                            </div>
+                            <div class="hero-stat-card">
+                                <div class="hero-stat-top">
+                                    <span class="hero-stat-lbl">Simulated Assets</span>
+                                    <i class="fa-solid fa-vault" style="color: var(--indigo);"></i>
+                                </div>
+                                <div class="hero-stat-val">&euro;350B+</div>
+                                <div class="hero-stat-sub">12 European Regimes</div>
+                            </div>
+                            <div class="hero-stat-card">
+                                <div class="hero-stat-top">
+                                    <span class="hero-stat-lbl">CET1 Solvency Trough</span>
+                                    <i class="fa-solid fa-shield-halved" style="color: var(--success);"></i>
+                                </div>
+                                <div class="hero-stat-val">9.85%</div>
+                                <div class="hero-stat-sub">+285 bps Supervisory Buffer</div>
+                            </div>
+                            <div class="hero-stat-card">
+                                <div class="hero-stat-top">
+                                    <span class="hero-stat-lbl">Fraud Mitigated</span>
+                                    <i class="fa-solid fa-bolt" style="color: var(--warning);"></i>
+                                </div>
+                                <div class="hero-stat-val">$85.5M+</div>
+                                <div class="hero-stat-sub">&lt; 30ms Real-Time Detection</div>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Filter Pillar Chips -->
                     <div class="pillar-filter-bar">
-                        <button class="filter-chip active" onclick="filterOverviewGrid('all')">All 50 Models</button>
-                        <button class="filter-chip" onclick="filterOverviewGrid('credit')">Credit Risk &amp; Lending (19)</button>
-                        <button class="filter-chip" onclick="filterOverviewGrid('fraud')">Financial Crime &amp; Fraud (4)</button>
-                        <button class="filter-chip" onclick="filterOverviewGrid('treasury')">Treasury &amp; ALM (10)</button>
-                        <button class="filter-chip" onclick="filterOverviewGrid('customer')">Customer &amp; Wealth (7)</button>
-                        <button class="filter-chip" onclick="filterOverviewGrid('regulatory')">Solvency &amp; ESG (10)</button>
+                        <button class="filter-chip active" onclick="filterOverviewGrid('all', this)">
+                            All 50 Models
+                        </button>
+                        <button class="filter-chip" onclick="filterOverviewGrid('credit', this)">
+                            Credit Risk &amp; Lending <span class="chip-count">20</span>
+                        </button>
+                        <button class="filter-chip" onclick="filterOverviewGrid('fraud', this)">
+                            Financial Crime <span class="chip-count">4</span>
+                        </button>
+                        <button class="filter-chip" onclick="filterOverviewGrid('treasury', this)">
+                            Treasury &amp; ALM <span class="chip-count">10</span>
+                        </button>
+                        <button class="filter-chip" onclick="filterOverviewGrid('customer', this)">
+                            Customer &amp; Wealth <span class="chip-count">7</span>
+                        </button>
+                        <button class="filter-chip" onclick="filterOverviewGrid('regulatory', this)">
+                            Solvency &amp; ESG <span class="chip-count">9</span>
+                        </button>
                     </div>
 
                     <!-- 50-Project Interactive Grid -->
@@ -1583,19 +1629,19 @@
             {% for p in projects %}
             <section class="view-section" id="pane-{{ p.project_id }}" data-proj-index="{{ loop.index }}">
                 
-                <!-- Presentation Slide Navigation Toolbar -->
+                <!-- Slide Stepper Navigation Toolbar -->
                 <div class="presentation-control-bar">
                     <div class="slide-breadcrumb">
                         <span class="slide-btn" onclick="selectProject('overview')"><i class="fa-solid fa-table-cells-large"></i> Overview</span>
-                        <span>&rsaquo;</span>
+                        <span>/</span>
                         <span class="current-pillar">{{ p.category }}</span>
-                        <span>&rsaquo;</span>
+                        <span>/</span>
                         <span>Model {{ p.project_id[:2] }}</span>
                     </div>
                     <div class="slide-nav-buttons">
                         <button class="slide-btn" onclick="navigateProjectRel(-1)"><i class="fa-solid fa-arrow-left"></i> Previous</button>
-                        <span class="nav-keyboard-hint">SLIDE {{ "%02d"|format(loop.index) }} / 50</span>
-                        <button class="slide-btn slide-btn-primary" onclick="navigateProjectRel(1)">Next Model <i class="fa-solid fa-arrow-right"></i></button>
+                        <span class="nav-keyboard-hint">MODEL {{ "%02d"|format(loop.index) }} / 50</span>
+                        <button class="slide-btn slide-btn-primary" onclick="navigateProjectRel(1)">Next <i class="fa-solid fa-arrow-right"></i></button>
                     </div>
                 </div>
 
@@ -1605,7 +1651,7 @@
                         <span class="project-num-badge">MODEL {{ p.project_id[:2] }}</span>
                         <span class="project-cat-badge">{{ p.category }}</span>
                     </div>
-                    <h1 class="project-headline">{{ p.project_title }}</h1>
+                    <h2 class="project-headline">{{ p.project_title }}</h2>
                     
                     <div class="methodology-card">
                         <div class="methodology-title">
@@ -1621,9 +1667,9 @@
                 <div class="executive-kpi-panel">
                     <div class="kpi-panel-header">
                         <div class="kpi-panel-title">
-                            <i class="fa-solid fa-chart-line"></i> Core Quantitative Key Performance Indicators
+                            <i class="fa-solid fa-chart-line"></i> Core Key Performance Indicators
                         </div>
-                        <span class="table-badge table-badge-success">MODEL METRICS &amp; FINANCIAL LIFT</span>
+                        <span class="table-badge table-badge-success">MODEL METRICS</span>
                     </div>
                     <div class="kpi-container">
                         {% for kpi_label, kpi_value in p.kpis.items() %}
@@ -1646,15 +1692,15 @@
                                 <i class="fa-solid fa-chart-pie"></i> Diagnostic Visual Analytics Suite
                             </div>
                             <div class="suite-subtitle">
-                                5 High-Resolution Diagnostic Figures &bull; Interactive Hover, Zoom &amp; Slice Controls
+                                5 High-Resolution Diagnostic Figures with Interactive Controls
                             </div>
                         </div>
                         <div class="mode-switch-group">
                             <button class="mode-switch-btn active" id="btn-focus-{{ p.project_id }}" onclick="setFocusedMode('{{ p.project_id }}')">
-                                <i class="fa-solid fa-crosshairs"></i> Focused View
+                                Focused View
                             </button>
                             <button class="mode-switch-btn" id="btn-stack-{{ p.project_id }}" onclick="setStackedMode('{{ p.project_id }}')">
-                                <i class="fa-solid fa-layer-group"></i> All 5 Figures
+                                All 5 Figures
                             </button>
                         </div>
                     </div>
@@ -1662,25 +1708,33 @@
                     <!-- Figure Tabs Selection Bar -->
                     <div class="chart-tab-list" id="chart-tabs-{{ p.project_id }}">
                         {% for plot_key, plot_html in p.plots_html.items() %}
-                        <button class="tab-button {% if loop.first %}active{% endif %}" onclick="activateChartTab('{{ p.project_id }}', '{{ plot_key }}')">
+                        <button class="tab-button {% if loop.first %}active{% endif %}" onclick="activateChartTab('{{ p.project_id }}', '{{ plot_key }}', this)">
                             <span class="tab-fig-badge">FIG {{ loop.index }}</span>
                             <span class="tab-fig-name">{{ p.plot_explanations[plot_key].title }}</span>
                         </button>
                         {% endfor %}
                     </div>
 
-                    <!-- Focused Interactive Chart Area -->
+                    <!-- Focused & Diagnostic Interactive Chart Area -->
                     <div class="focused-chart-container" id="focus-area-{{ p.project_id }}">
                         {% for plot_key, plot_html in p.plots_html.items() %}
-                        <div class="chart-display-pane {% if loop.first %}active{% endif %}" id="chart-pane-{{ p.project_id }}-{{ plot_key }}">
-                            <div class="plot-canvas-box">
-                                {{ plot_html | safe }}
+                        <div class="chart-display-pane {% if loop.first %}active{% endif %}" id="chart-pane-{{ p.project_id }}-{{ plot_key }}" data-rendered="false" data-plot-key="{{ plot_key }}">
+                            <div class="tab-fig-banner">
+                                <span>FIGURE {{ loop.index }}: {{ p.plot_explanations[plot_key].title }}</span>
+                                <span class="nav-metric-pill">INTERACTIVE CANVAS</span>
+                            </div>
+
+                            <div class="plot-canvas-box" id="plot-box-{{ p.project_id }}-{{ plot_key }}">
+                                <div class="plot-canvas-loading" id="loader-{{ p.project_id }}-{{ plot_key }}">
+                                    <i class="fa-solid fa-circle-notch fa-spin"></i> Initializing Figure...
+                                </div>
+                                <template id="tpl-{{ p.project_id }}-{{ plot_key }}">{{ plot_html | safe }}</template>
                             </div>
                             
                             <!-- 3-Part Analytical Interpretation Card -->
                             <div class="analytical-interpretation-card">
                                 <div class="interpretation-header">
-                                    <i class="fa-solid fa-magnifying-glass-chart"></i> Quantitative Findings &amp; Executive Risk Interpretation
+                                    <i class="fa-solid fa-magnifying-glass-chart"></i> Quantitative Findings &amp; Risk Interpretation
                                 </div>
                                 <div class="interpretation-grid">
                                     <div class="interpretation-segment seg-shows">
@@ -1693,7 +1747,7 @@
                                     </div>
                                     <div class="interpretation-segment seg-finding">
                                         <div class="segment-tag tag-finding">
-                                            <i class="fa-solid fa-chart-column"></i> Statistical &amp; Empirical Finding
+                                            <i class="fa-solid fa-chart-column"></i> Empirical Finding
                                         </div>
                                         <div class="segment-text">
                                             {{ p.plot_explanations[plot_key].interpretation }}
@@ -1701,28 +1755,13 @@
                                     </div>
                                     <div class="interpretation-segment seg-action">
                                         <div class="segment-tag tag-action">
-                                            <i class="fa-solid fa-bolt"></i> Executive Risk Action
+                                            <i class="fa-solid fa-bolt"></i> Risk Action
                                         </div>
                                         <div class="segment-text">
                                             {{ p.plot_explanations[plot_key].action }}
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-
-                    <!-- Stacked Chart View (Boardroom Review) -->
-                    <div class="all-charts-stack" id="stack-area-{{ p.project_id }}">
-                        {% for plot_key, plot_html in p.plots_html.items() %}
-                        <div class="stacked-chart-box">
-                            <div class="stacked-chart-head">
-                                <span>FIGURE {{ loop.index }}: {{ p.plot_explanations[plot_key].title }}</span>
-                                <span class="nav-metric-pill">INTERACTIVE CANVAS</span>
-                            </div>
-                            <div style="padding: 1.25rem;">
-                                {{ plot_html | safe }}
                             </div>
                         </div>
                         {% endfor %}
@@ -1819,7 +1858,7 @@
                     </div>
                 </div>
 
-                <!-- Executive Profit Playbook (Strategic Actions) -->
+                <!-- Executive Profit Playbook -->
                 <div class="section-card">
                     <div class="section-header-title">
                         <div class="section-header-left">
@@ -1831,7 +1870,7 @@
                         <div class="playbook-card">
                             <div>
                                 <div class="playbook-card-header">
-                                    <span class="playbook-phase-tag phase-30d"><i class="fa-solid fa-clock"></i> 30 Days</span>
+                                    <span class="playbook-phase-tag phase-30d">30 Days</span>
                                     <span class="table-badge">QUICK WIN</span>
                                 </div>
                                 <div class="playbook-title">Immediate Tactical Implementation</div>
@@ -1841,7 +1880,7 @@
                         <div class="playbook-card">
                             <div>
                                 <div class="playbook-card-header">
-                                    <span class="playbook-phase-tag phase-90d"><i class="fa-solid fa-calendar-days"></i> 90 Days</span>
+                                    <span class="playbook-phase-tag phase-90d">90 Days</span>
                                     <span class="table-badge">SCALE</span>
                                 </div>
                                 <div class="playbook-title">Mid-Term Syndication &amp; Scaling</div>
@@ -1851,10 +1890,10 @@
                         <div class="playbook-card">
                             <div>
                                 <div class="playbook-card-header">
-                                    <span class="playbook-phase-tag phase-12m"><i class="fa-solid fa-rocket"></i> 12 Months</span>
+                                    <span class="playbook-phase-tag phase-12m">12 Months</span>
                                     <span class="table-badge">TRANSFORMATION</span>
                                 </div>
-                                <div class="playbook-title">Strategic Transformation &amp; Market Leadership</div>
+                                <div class="playbook-title">Strategic Transformation</div>
                                 <div class="playbook-text">{{ p.profit_playbook.twelve_months }}</div>
                             </div>
                         </div>
@@ -1885,7 +1924,7 @@
         </main>
     </div>
 
-    <!-- Client-Side Dashboard & Presentation Controller Script -->
+    <!-- Client-Side High-Performance Dashboard & Presentation Controller Script -->
     <script>
         const projectList = [
             'overview',
@@ -1896,14 +1935,63 @@
 
         let currentActiveProjectId = 'overview';
 
+        // Lazy On-Demand Chart Renderer
+        function renderChartIfNeeded(projectId, plotKey) {
+            const pane = document.getElementById('chart-pane-' + projectId + '-' + plotKey);
+            if (!pane) return;
+            
+            const box = document.getElementById('plot-box-' + projectId + '-' + plotKey);
+            const loader = document.getElementById('loader-' + projectId + '-' + plotKey);
+            
+            if (pane.getAttribute('data-rendered') === 'true') {
+                const plotDiv = box ? box.querySelector('.plotly-graph-div') : null;
+                if (plotDiv && window.Plotly) {
+                    try { Plotly.Plots.resize(plotDiv); } catch(e) {}
+                }
+                return;
+            }
+            
+            const tpl = document.getElementById('tpl-' + projectId + '-' + plotKey);
+            if (tpl && box) {
+                const temp = document.createElement('div');
+                temp.innerHTML = tpl.innerHTML;
+                
+                const graphDiv = temp.querySelector('.plotly-graph-div') || temp.firstElementChild;
+                const scriptTags = temp.querySelectorAll('script');
+                
+                if (loader) loader.remove();
+                
+                if (graphDiv) {
+                    box.appendChild(graphDiv);
+                }
+                
+                scriptTags.forEach(oldScript => {
+                    const newScript = document.createElement('script');
+                    newScript.type = 'text/javascript';
+                    newScript.textContent = oldScript.textContent;
+                    document.body.appendChild(newScript);
+                    newScript.remove();
+                });
+                
+                pane.setAttribute('data-rendered', 'true');
+                
+                requestAnimationFrame(() => {
+                    const renderedPlot = box.querySelector('.plotly-graph-div');
+                    if (renderedPlot && window.Plotly) {
+                        try { Plotly.Plots.resize(renderedPlot); } catch(e) {}
+                    }
+                });
+            }
+        }
+
         function selectProject(projectId) {
             currentActiveProjectId = projectId;
             
-            // Update sidebar nav items
             const navItems = document.querySelectorAll('.project-nav-item');
             navItems.forEach(item => {
                 if (item.getAttribute('data-proj-id') === projectId) {
                     item.classList.add('active');
+                    item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                 } else {
                     item.classList.remove('active');
                 }
@@ -1916,7 +2004,6 @@
                 if (overviewBtn) overviewBtn.classList.remove('active');
             }
 
-            // Update main viewport section
             const sections = document.querySelectorAll('.view-section');
             sections.forEach(sec => sec.classList.remove('active'));
 
@@ -1926,7 +2013,30 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
 
-            // Trigger Plotly relayout to ensure proper chart width
+            if (projectId !== 'overview') {
+                const focusArea = document.getElementById('focus-area-' + projectId);
+                const isStacked = focusArea && focusArea.classList.contains('stacked-mode');
+                
+                if (isStacked) {
+                    const panes = focusArea.querySelectorAll('.chart-display-pane');
+                    panes.forEach(pane => {
+                        const pk = pane.getAttribute('data-plot-key');
+                        if (pk) renderChartIfNeeded(projectId, pk);
+                    });
+                } else {
+                    let activeKey = null;
+                    if (focusArea) {
+                        const activePane = focusArea.querySelector('.chart-display-pane.active') || focusArea.querySelector('.chart-display-pane');
+                        if (activePane) {
+                            activeKey = activePane.getAttribute('data-plot-key');
+                        }
+                    }
+                    if (activeKey) {
+                        renderChartIfNeeded(projectId, activeKey);
+                    }
+                }
+            }
+
             window.dispatchEvent(new Event('resize'));
         }
 
@@ -1938,14 +2048,18 @@
             selectProject(projectList[nextIndex]);
         }
 
-        // Keyboard arrow navigation for presentation mode
+        // Keyboard Navigation
         document.addEventListener('keydown', function(event) {
+            if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
+
             if (event.key === 'ArrowRight') {
                 navigateProjectRel(1);
             } else if (event.key === 'ArrowLeft') {
                 navigateProjectRel(-1);
             } else if (event.key === 'Escape') {
                 selectProject('overview');
+            } else if (event.key === 'p' || event.key === 'P') {
+                togglePresentationMode();
             }
         });
 
@@ -1954,21 +2068,24 @@
             const btn = document.getElementById('presentationModeBtn');
             if (document.body.classList.contains('presentation-mode')) {
                 btn.innerHTML = '<i class="fa-solid fa-compress"></i> Standard View';
+                btn.classList.add('active');
             } else {
-                btn.innerHTML = '<i class="fa-solid fa-expand"></i> Presentation Mode';
+                btn.innerHTML = '<i class="fa-solid fa-display"></i> Presentation Mode';
+                btn.classList.remove('active');
             }
             window.dispatchEvent(new Event('resize'));
         }
 
-        function activateChartTab(projectId, plotKey) {
+        function activateChartTab(projectId, plotKey, btnElement) {
             const tabsContainer = document.getElementById('chart-tabs-' + projectId);
             if (tabsContainer) {
                 const buttons = tabsContainer.querySelectorAll('.tab-button');
                 buttons.forEach(btn => btn.classList.remove('active'));
             }
 
-            const activeBtn = event.currentTarget;
-            if (activeBtn) activeBtn.classList.add('active');
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
 
             const focusArea = document.getElementById('focus-area-' + projectId);
             if (focusArea) {
@@ -1976,7 +2093,10 @@
                 panes.forEach(pane => pane.classList.remove('active'));
 
                 const targetPane = document.getElementById('chart-pane-' + projectId + '-' + plotKey);
-                if (targetPane) targetPane.classList.add('active');
+                if (targetPane) {
+                    targetPane.classList.add('active');
+                    renderChartIfNeeded(projectId, plotKey);
+                }
             }
 
             window.dispatchEvent(new Event('resize'));
@@ -1984,36 +2104,53 @@
 
         function setFocusedMode(projectId) {
             const focusArea = document.getElementById('focus-area-' + projectId);
-            const stackArea = document.getElementById('stack-area-' + projectId);
+            const tabsContainer = document.getElementById('chart-tabs-' + projectId);
             const btnFocus = document.getElementById('btn-focus-' + projectId);
             const btnStack = document.getElementById('btn-stack-' + projectId);
 
-            if (focusArea) focusArea.style.display = 'block';
-            if (stackArea) stackArea.classList.remove('active');
+            if (focusArea) focusArea.classList.remove('stacked-mode');
+            if (tabsContainer) tabsContainer.style.display = 'flex';
             if (btnFocus) btnFocus.classList.add('active');
             if (btnStack) btnStack.classList.remove('active');
+
+            if (focusArea) {
+                const activePane = focusArea.querySelector('.chart-display-pane.active') || focusArea.querySelector('.chart-display-pane');
+                if (activePane) {
+                    const pk = activePane.getAttribute('data-plot-key');
+                    if (pk) renderChartIfNeeded(projectId, pk);
+                }
+            }
 
             window.dispatchEvent(new Event('resize'));
         }
 
         function setStackedMode(projectId) {
             const focusArea = document.getElementById('focus-area-' + projectId);
-            const stackArea = document.getElementById('stack-area-' + projectId);
+            const tabsContainer = document.getElementById('chart-tabs-' + projectId);
             const btnFocus = document.getElementById('btn-focus-' + projectId);
             const btnStack = document.getElementById('btn-stack-' + projectId);
 
-            if (focusArea) focusArea.style.display = 'none';
-            if (stackArea) stackArea.classList.add('active');
+            if (focusArea) {
+                focusArea.classList.add('stacked-mode');
+                const panes = focusArea.querySelectorAll('.chart-display-pane');
+                panes.forEach(pane => {
+                    const pk = pane.getAttribute('data-plot-key');
+                    if (pk) renderChartIfNeeded(projectId, pk);
+                });
+            }
+            if (tabsContainer) tabsContainer.style.display = 'none';
             if (btnFocus) btnFocus.classList.remove('active');
             if (btnStack) btnStack.classList.add('active');
 
             window.dispatchEvent(new Event('resize'));
         }
 
-        function filterOverviewGrid(pillar) {
+        function filterOverviewGrid(pillar, btnElement) {
             const filterChips = document.querySelectorAll('.filter-chip');
             filterChips.forEach(chip => chip.classList.remove('active'));
-            if (event && event.currentTarget) event.currentTarget.classList.add('active');
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
 
             const tiles = document.querySelectorAll('.matrix-project-tile');
             tiles.forEach(tile => {
@@ -2027,6 +2164,7 @@
 
         function handleSidebarSearch() {
             const input = document.getElementById('projectSearchInput');
+            if (!input) return;
             const query = input.value.toLowerCase().trim();
             const items = document.querySelectorAll('.project-nav-item');
 
@@ -2039,6 +2177,24 @@
                 }
             });
         }
+
+        let resizeDebounce = null;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeDebounce);
+            resizeDebounce = setTimeout(() => {
+                if (currentActiveProjectId && currentActiveProjectId !== 'overview') {
+                    const activePane = document.querySelector('#pane-' + currentActiveProjectId);
+                    if (activePane) {
+                        const plots = activePane.querySelectorAll('.plotly-graph-div');
+                        plots.forEach(p => {
+                            if (window.Plotly) {
+                                try { Plotly.Plots.resize(p); } catch(e) {}
+                            }
+                        });
+                    }
+                }
+            }, 100);
+        });
     </script>
 </body>
 </html>
